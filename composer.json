@@ -1,0 +1,140 @@
+{
+  "name": "kriss/webman-basic",
+  "type": "project",
+  "keywords": [
+    "webman template"
+  ],
+  "homepage": "https://github.com/krissss/webman-basic",
+  "license": "MIT",
+  "description": "High performance HTTP Service Framework.",
+  "authors": [
+    {
+      "name": "kriss",
+      "email": "462679766@qq.com",
+      "homepage": "https://github.com/krissss",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "illuminate/container": "^8.83",
+    "illuminate/database": "^8.83",
+    "illuminate/events": "^8.83",
+    "illuminate/http": "^8.83",
+    "illuminate/pagination": "^8.83",
+    "illuminate/redis": "^8.83",
+    "kriss/composer-assets-plugin": "^1.0",
+    "kriss/php-notification": "^1.2",
+    "robmorgan/phinx": "^0.12.10",
+    "symfony/process": "^5.4",
+    "symfony/translation": "^5.4",
+    "vlucas/phpdotenv": "^5.4",
+    "webman-tech/amis-admin": "^2.2",
+    "webman-tech/auth": "^2.0",
+    "webman-tech/crontab-task": "^1.0",
+    "webman-tech/docker": "^2.3",
+    "webman-tech/laravel-cache": "^1.2",
+    "webman-tech/laravel-console": "^1.0",
+    "webman-tech/laravel-filesystem": "^3.1",
+    "webman-tech/laravel-http-client": "^1.1",
+    "webman-tech/laravel-translation": "^1.1",
+    "webman-tech/laravel-validation": "^1.2",
+    "webman-tech/log-reader": "^2.0",
+    "webman-tech/logger": "^2.0",
+    "webman-tech/polyfill": "^1.0",
+    "webman-tech/swagger": "^1.0",
+    "webman/console": "^1.2",
+    "webman/event": "^1.0",
+    "webman/multi-session": "^1.0",
+    "webman/redis-queue": "^1.2",
+    "workerman/webman-framework": "^1.5",
+    "yiisoft/json": "^1.0",
+    "yiisoft/strings": "^2.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.14",
+    "symfony/var-dumper": "^5.4",
+    "webman-tech/debugbar": "^2.2"
+  },
+  "suggest": {
+    "walkor/webman": "Basic From Version 1.5.1",
+    "friendsofphp/php-cs-fixer": "`composer global require friendsofphp/php-cs-fixer --dev` For fixer",
+    "phpstan/phpstan": "`composer global require phpstan/phpstan --dev` For analyse",
+    "ext-event": "For better performance",
+    "ext-redis": "For redis use",
+    "workbunny/webman-nacos": "For nacos use",
+    "ramsey/uuid": "For uuid use",
+    "symfony/cache": "For PSR6 cache use"
+  },
+  "extra": {
+    "assets-dir": "public/assets",
+    "assets-pkgs": [
+      {
+        "type": "npm",
+        "name": "amis",
+        "version": "2.2.0",
+        "only_files": [
+          "sdk/thirds",
+          "sdk/sdk.css",
+          "sdk/helper.css",
+          "sdk/iconfont.css",
+          "sdk/sdk.js"
+        ]
+      },
+      {
+        "type": "npm",
+        "name": "history",
+        "version": "4.10.1",
+        "only_files": [
+          "umd/history.min.js"
+        ]
+      },
+      {
+        "type": "npm",
+        "name": "bootstrap",
+        "version": "3.4.1",
+        "only_files": [
+          "dist/css/bootstrap.min.css"
+        ]
+      }
+    ]
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": false,
+      "kriss/composer-assets-plugin": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "": "./",
+      "app\\": "./app"
+    },
+    "files": [
+      "./support/helpers.php",
+      "./support/functions.php"
+    ]
+  },
+  "scripts": {
+    "post-package-install": [
+      "support\\Plugin::install"
+    ],
+    "post-package-update": [
+      "support\\Plugin::install"
+    ],
+    "pre-package-uninstall": [
+      "support\\Plugin::uninstall"
+    ],
+    "dev-win": [
+      "Composer\\Config::disableProcessTimeout",
+      "php windows.php"
+    ],
+    "fixer:lint": "php-cs-fixer fix --config .php-cs-fixer.dist.php",
+    "analyse": "phpstan analyse",
+    "phinx": "phinx"
+  },
+  "repositories": {
+  }
+}
